@@ -2,3 +2,6 @@
 *.buildinfo
 *.changes
 edk2.build
+pve-edk2-firmware.build
+/pve-edk2-firmware-*.????.??
+

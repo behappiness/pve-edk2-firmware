@@ -51,7 +51,7 @@ dsc: $(DSC)
 
 .PHONY: submodule
 submodule:
-	git submodule update --init $(SRCDIR)
+	git submodule update --init --recursive
 
 $(SRCDIR)/Readme.md: submodule
 

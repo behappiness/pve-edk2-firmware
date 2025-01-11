@@ -22,8 +22,9 @@ all: $(DEBS)
 $(BUILDDIR): $(SRCDIR)/Readme.md
 	rm -rf $@ $@.tmp
 	cp -rpa $(SRCDIR) $@.tmp
+	rm -rf $@.tmp/ArmPkg/Library/GccLto/*.a
 	cp -a debian $@.tmp
-	echo "git clone https://github.com/proxmox/pve-edk2-firmware.git\\ngit checkout $(shell git rev-parse HEAD)" > $@.tmp/debian/SOURCE
+	echo "git clone git://git.proxmox.com/git/pve-edk2-firmware.git\\ngit checkout $(shell git rev-parse HEAD)" > $@.tmp/debian/SOURCE
 	mv $@.tmp $@
 
 .PHONY: deb
@@ -51,7 +52,7 @@ dsc: $(DSC)
 
 .PHONY: submodule
 submodule:
-	git submodule update --init --recursive
+	test -e edk2/Maintainers.txt || git submodule update --init --recursive
 
 $(SRCDIR)/Readme.md: submodule
 
